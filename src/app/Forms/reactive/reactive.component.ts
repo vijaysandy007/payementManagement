@@ -50,7 +50,7 @@ export class ReactiveComponent implements OnInit {
 
   
   myArray:any = [{
-    name: "vijay",
+    name: "karthik",
     age: 25
   }]
  
