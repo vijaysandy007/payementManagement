@@ -1,0 +1,29 @@
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-12" style="padding-top: 40px;">
+
+           <select (change)="getCountry($event)">
+
+            <option>Select Country</option>
+
+            <option *ngFor="let corona of apiData" >{{corona.Country}}</option>
+
+           </select><br><br>
+
+           <button (click)="getCoronaData()" class="btn btn-primary">Get Corona Detial</button><br><br><br>
+
+           <div class="div" *ngIf="showData">
+
+           <p>Confirmed: {{conformed}}</p>
+           <p>Recoverd: {{recoverd}}</p>
+           <p>Death: {{death}}</p>
+
+           <p>Country Name: {{countryName}}</p>
+
+        </div>
+
+        </div>
+    </div>
+</div>  

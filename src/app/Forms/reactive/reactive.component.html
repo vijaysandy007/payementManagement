@@ -1,0 +1,39 @@
+
+
+<button class="btn btn-primary"  (click)="addPassangers()">Add Sub Passanger</button><br><br>
+
+<form [formGroup]="passangerForm" (ngSubmit)="onSubmit()">
+ 
+   
+  <div formArrayName="passangerArray">
+    <div *ngFor="let passItrate of passangerArray.controls; let i=index">
+      
+      <div [formGroupName]="i">
+        
+        Sub Passanger :
+        <input type="text" formControlName="subPassanger">
+         
+        Age:
+        <input type="text" formControlName="subAge" >
+
+        <button class="btn btn-danger" (click)="removePassanger(i)">Remove</button>
+
+      </div>
+    </div>
+  </div><br>
+ 
+    <button class="btn btn-success" [disabled]="passangerForm.invalid" type="submit">Submit</button>
+  
+</form>
+
+
+
+
+
+
+ 
+ <!-- <app-forming></app-forming> -->
+
+
+
+

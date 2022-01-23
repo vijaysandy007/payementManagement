@@ -1,0 +1,27 @@
+<div class="container" style="padding-top: 40px;">
+    <div class="row">
+
+        <div class="col-md-12">
+
+            <input type="text" #channelName>
+
+            <button (click)="getChannelInfo(channelName.value)" class="btn btn-primary">Get Info</button>
+
+            <ul *ngFor="let channel of channels ">
+                <h4>{{channel.snippet.title}}</h4>
+
+                <p>Publish Time : {{channel.snippet.publishTime}}</p>
+                
+                <a target="_blank" href="https://www.youtube.com/watch/{{channel.id.videoId}}">
+
+               <div> <img width="500" class="img-thumbnail" height="300" src="{{channel.snippet.thumbnails.medium.url}}" alt=""></div>
+            </a>
+            <p>Channel Name:  {{channel.snippet.channelTitle}}</p>   
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+
+

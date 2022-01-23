@@ -1,0 +1,13 @@
+
+<form (submit)="submitbtn(data)" #data="ngForm">
+    <h1>{{title}}</h1><br>
+    Name:<input type="text" name="name" ngModel><br><br>
+    Last Name:<input type="text" name="lastname" ngModel><br><br>
+    User Name:<input type="text" name="username" ngModel><br><br>
+    Email Id:<input type="text" name="emailid" ngModel><br><br>
+    Password:<input type="text" name="password" ngModel><br><br>
+
+    <button type="submit" class="btn btn-warning">Register</button>
+    <button type="button" (click)="clear(data)" class="btn btn-danger">Rest</button>
+
+</form>

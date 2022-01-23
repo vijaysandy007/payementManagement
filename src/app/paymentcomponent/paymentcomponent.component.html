@@ -1,0 +1,86 @@
+
+<input type="text" placeholder="Search Payement Data"
+[(ngModel)]="PaymentInfoObj"
+style="border: 3px solid rgb(11, 85, 170);
+border-radius: 5px;">     
+
+<!-- DropDown Box -->
+
+<select style="border: 3px solid blue; border-radius: 3px;" [(ngModel)]="dropDownSelect" (change)="PaymentInfoObj=''">
+   <option value="name" >Name</option>
+   <option value="price" >Price</option>
+   <option value="cardno">CardNo</option>
+</select>        <br><br>
+
+<div class="formInputs" >
+<form (submit)="addBtn(f)" #f="ngForm"  >
+<div class="aliginItem">
+<h4>Add Payment</h4> 
+
+
+Name:<input type="text"  [(ngModel)]="Name" placeholder="Enter Your Name" name="name" ngModel required #Names="ngModel"
+ minlength="3" autocomplete="off" [ngClass]="{'has-error': Names.invalid && Names.touched }">&nbsp;&nbsp;
+
+<p class="alert alert-danger"
+*ngIf="Names.errors?.required && (Names.touched || Names.dirty)">
+    Please Enter your Name
+</p><br><br>
+
+<p class="alert alert-danger"
+*ngIf="Names.touched && Names.errors?.minlength">
+    Please Enter Minimum 3 Characters 
+</p>
+<!-- Search Input -->
+
+
+Price: <input type="number" [(ngModel)]="Price" min="0" name="price" ngModel #Prices="ngModel" required placeholder="Enter The Price"
+autocomplete="off" [ngClass]="{'has-error': Prices.invalid && Prices.touched}"><br>
+<p class="alert alert-danger"
+*ngIf="Prices.errors?.required && (Prices.touched || Prices.dirty)">
+    Please Enter Price
+</p><br>
+Card No: <input type="text"  [(ngModel)]="cardNo" minlength="19" autocomplete="off"
+ placeholder="XX XXX XXX XXX XXX XX"
+  appCardspacing name="cardno" ngModel #carNo="ngModel" required
+ [ngClass]="{'has-error': carNo.invalid && carNo.touched }">
+
+ 
+ <img [src]="cardNo | cardIdentity" height="50px">
+ 
+
+ <p class="alert alert-danger"
+*ngIf="carNo.errors?.required && (carNo.touched || carNo.dirty)">
+    Please Enter your Card Number
+</p>
+<p class="alert alert-danger"
+*ngIf="carNo.touched && carNo.errors?.minlength">
+    Please Enter 16 Digit Card Number
+</p><br><br>
+
+
+
+<!-- | cardIdentity:cardNo -->
+
+<button type="submit" class="btn btn-primary" style="cursor: pointer;"
+[disabled]="f.invalid">Add Payment</button>&nbsp;&nbsp;
+   <button type="button" (click)="f.reset()" class="btn btn-danger">Reset</button>  <br><br>
+
+<div [ngStyle]="{color:'green'}">{{output}}</div><br><br><br>
+</div>
+
+</form>
+
+</div>
+
+
+
+
+
+
+<app-listpayment  [settingParentData]="PaymentInfoObj" 
+ [settingParentDropDown]="dropDownSelect"></app-listpayment>
+
+
+
+ <!-- "Name.length <3 || Price ==0 || cardNo.length <16" -->
+

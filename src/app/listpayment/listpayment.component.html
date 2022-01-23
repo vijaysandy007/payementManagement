@@ -1,0 +1,80 @@
+
+
+<div class="aligin" style="left: 20%; position: relative;">
+
+&nbsp;{{dropdownOutput}}
+</div>
+<div [ngStyle]="{color:'red'}">{{output}}</div><br><br>
+<h4>List Payment</h4>
+<table class="table table-striped">
+    <thead>
+
+        <tr>
+
+            <th scope="col">S.no</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Card No</th>
+            <th scope="col">Operation</th>
+        </tr>
+    </thead>
+
+
+    <tbody>
+        <tr *ngFor="let  test of paymentInfo | search : settingParentData:settingParentDropDown ; index as i">
+
+            <th scope="row">{{i}}</th>
+            <td >{{test.name}}</td>
+            <td>{{test.price | currency:"INR"}}</td>
+            <td>{{test.cardno |cardtype}}</td>
+             
+            <button type="button" (click)="editBtn(i,test.name,test.price,test.cardno)" id="btnEdit">Edit</button>&nbsp;
+            <button type="button"  id="deleteBtn" (click)="deleteBtn(i)">Delete</button>
+        </tr>
+    </tbody> 
+</table>
+<!-- test.name,test.price,test.cardno -->
+<div class="update" [hidden]=showDiv >
+<form [formGroup]="loginForm" (submit)="updateBtn()">
+
+Name:<input type="text" [(ngModel)]="fName" name="uname" formControlName="username" autocomplete="off"
+><br><br>
+
+<p class="alert alert-danger" *ngIf="usernamectrl.errors?.required "> 
+    Please Enter Name
+</p>
+<p class="alert alert-danger" *ngIf="usernamectrl.errors?.minlength "> 
+    Please Enter Minimum 3 Characters
+</p>
+
+
+Price: <input type="number" [(ngModel)]="Price"  name="uprice" formControlName="userprice"><br><br>
+
+<p class="alert alert-danger" *ngIf="userpricectrl.errors?.required">
+
+Please Enter Price
+
+</p>
+
+cardNo No: <input type="text " [(ngModel)]="cardnumber" name="ucardnumber" maxlength="16" formControlName="usercardno"
+ autocomplete="off"><br><br>
+
+<p class="alert alert-danger" *ngIf="usercardnum.errors?.required">
+    Please Enter Card Number
+</p> 
+
+<p class="alert alert-danger" *ngIf="usercardnum.errors?.minlength ">
+    Please Enter Minimum 16 Digit Card Number but you enter {{usercardnum.errors?.minlength |  json}}
+</p>
+
+
+<button type="submit" class="btn btn-warning" [disabled]="loginForm.invalid">Update</button>&nbsp;&nbsp;
+<button type="button" (click)="loginForm.reset()" class="btn btn-danger" >Reset</button>
+
+</form>
+</div><br><br><br><br><br><br>
+
+<div>
+
+<app-reactive></app-reactive>
+</div>
