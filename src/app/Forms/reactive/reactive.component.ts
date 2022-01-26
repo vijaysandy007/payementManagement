@@ -35,8 +35,8 @@ export class ReactiveComponent implements OnInit {
   newProperty(): FormGroup {
 
     return this.fb.group({
-      "subPassanger": new FormControl(this.defaulutPassanger, [Validators.required, Validators.minLength(2), Validators.maxLength(10)]),
-      "subAge": new FormControl(this.defaultAge,[Validators.required, Validators.minLength(2), Validators.maxLength(10)]),
+      "subPassanger": new FormControl(this.defaulutPassanger ? this.defaulutPassanger : null , [Validators.required, Validators.minLength(2), Validators.maxLength(10)]),
+      "subAge": new FormControl(this.defaultAge ? this.defaultAge : null ,[Validators.required, Validators.minLength(2), Validators.maxLength(10)]),
 
     })
   }
